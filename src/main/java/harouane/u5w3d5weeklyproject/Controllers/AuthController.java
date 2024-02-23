@@ -15,7 +15,6 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
-
     @PostMapping("/login")
     public LoginResponseDTO login(@RequestBody UserLoginDTO payload) {
         return new LoginResponseDTO(authService.authenticateUserAndGenerateToken(payload));

@@ -1,6 +1,6 @@
 package harouane.u5w3d5weeklyproject.AppConfigs;
 
-import harouane.u5w3d5weeklyproject.JWT.JWTFIlter;
+import harouane.u5w3d5weeklyproject.JWT.JWTFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,7 +20,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableMethodSecurity
 public class AuthConfig {
     @Autowired
-    private JWTFIlter jwtFilter;
+    private JWTFilter jwtFilter;
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.formLogin(AbstractHttpConfigurer::disable);

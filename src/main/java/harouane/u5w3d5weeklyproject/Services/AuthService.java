@@ -35,7 +35,6 @@ public class AuthService {
     }
 
     public User saveUser(NewUserDTO payload) {
-
         usersDAO.findByEmail(payload.email()).ifPresent(user -> {
             throw new BadRequestException("L'email " + user.getEmail() + " è già in uso!");
         });

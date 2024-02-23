@@ -1,5 +1,7 @@
 package harouane.u5w3d5weeklyproject.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -24,6 +26,14 @@ public class Event {
     LocalDate date;
     String location;
     int numberOfSeats;
+    @ManyToMany
+    @JoinTable(
+            name = "event_user",
+            joinColumns = @JoinColumn(name = "event_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private Set<User> participants;
+
     public Event(String title, String description, LocalDate date, String location, int numberOfSeats) {
         this.title = title;
         this.description = description;
@@ -32,11 +42,4 @@ public class Event {
         this.numberOfSeats = numberOfSeats;
     }
 
-    @ManyToMany
-    @JoinTable(
-            name = "event_user",
-            joinColumns = @JoinColumn(name = "event_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id")
-    )
-    private Set<User> participants;
 }

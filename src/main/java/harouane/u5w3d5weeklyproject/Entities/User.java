@@ -22,6 +22,7 @@ import java.util.Set;
 @Table(name = "users")
 @JsonIgnoreProperties({"password", "credentialsNonExpired", "accountNonExpired", "authorities", "username", "accountNonLocked", "enabled", "events"})
 public class User implements UserDetails {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
@@ -49,12 +50,10 @@ public class User implements UserDetails {
         this.avatarURL = avatarURL;
         this.role = Role.NORMAL_USER;
     }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(this.role.name()));
     }
-
     @Override
     public String getPassword() {
         return this.password;
@@ -63,22 +62,18 @@ public class User implements UserDetails {
     public String getUsername() {
         return this.email;
     }
-
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
-
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
-
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
-
     @Override
     public boolean isEnabled() {
         return true;
